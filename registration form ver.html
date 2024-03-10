@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type="text"]:disabled {
+      background-color: #ddd;
+    }
+
+    #verificationSection {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="registrationForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Enter your name" required>
+
+    <label for="username">Username:</label>
+    <input type="text" id="username" placeholder="Enter your username" required>
+
+    <label for="phoneNumber">Phone Number:</label>
+    <div style="display: flex;">
+      <input type="text" id="countryCode" placeholder="+1" style="width: 20%; margin-right: 5px;" required>
+      <input type="text" id="phoneNumber" placeholder="Enter your phone number" required>
+    </div>
+
+    <button type="button" onclick="sendVerificationCode()">Register</button>
+  </form>
+
+  <div id="verificationSection">
+    <form id="verificationForm">
+      <label for="verificationCode">Verification Code:</label>
+      <input type="text" id="verificationCode" placeholder="Enter the code" required>
+
+      <button type="button" onclick="verifyCode()">Verify</button>
+    </form>
+  </div>
+
+  <script>
+    function sendVerificationCode() {
+      // Validate phone number format before sending the code
+      var countryCode = document.getElementById('countryCode').value;
+      var phoneNumber = document.getElementById('phoneNumber').value;
+
+      if (countryCode.trim() === '' || phoneNumber.trim() === '') {
+        alert('Please enter a valid phone number.');
+        return;
+      }
+
+      // Simulate sending a verification code via SMS
+      alert('Verification code sent to your phone!');
+      
+      // Hide registration form, show verification form
+      document.getElementById('registrationForm').style.display = 'none';
+      document.getElementById('verificationSection').style.display = 'block';
+    }
+
+    function verifyCode() {
+      // Perform code verification logic here
+      var enteredCode = document.getElementById('verificationCode').value;
+
+      // Simulate successful verification
+      if (enteredCode === '12345') {
+        alert('Verification successful! Registration complete.');
+      } else {
+        alert('Incorrect verification code. Please try again.');
+      }
+    }
+  </script>
+</body>
+</html>
